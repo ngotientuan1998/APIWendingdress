@@ -33,7 +33,7 @@ router.put('/update_job/:id', async(req,res)=>{
         await mongoose.connect(uri);
         let idJob=req.params.id;
         let updatedData = req.body;
-        let updatedJob = await carModel.findByIdAndUpdate(idJob, updatedData, { new: true });
+        let updatedJob = await jobModel.findByIdAndUpdate(idJob, updatedData, { new: true });
 
         if (updatedJob) {
             res.status(200).send("Thành công");
