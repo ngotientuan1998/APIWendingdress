@@ -10,7 +10,7 @@ const uri = process.env.LINK;
 router.get('/list_job', async (req, res) => {
     await mongoose.connect(uri);
 
-    let jobs = await jobModel.find();
+    let user = await jobModel.find();
 
     console.log(jobs);
 
@@ -47,20 +47,7 @@ router.put('/update_job/:id', async(req,res)=>{
     }
 })
 
-router.delete('/delete_job/:id', async(req,res)=>{
-    try {
-        let idJob=req.params.id;
-        let deleteJob=await jobModel.findByIdAndDelete(idJob);
-        if (!deleteJob) {
-            return res.status(404).json({ message: 'Không tìm thấy job' });
-        }
-        
-        res.json({ message: 'Đã xóa thành công', deleteJob });
-    } catch (error) {
-        console.log(error);
-        res.status(500).send('Lỗi');
-    }
-})
+
 
 module.exports=router;
 
