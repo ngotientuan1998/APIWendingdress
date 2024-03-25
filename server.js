@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+
 require('dotenv').config()
 const routerService = require('./Router/routerService')
 const routerJob = require('./Router/routerJob')
@@ -15,3 +16,7 @@ app.use('/Thongke',routerThongke)
 app.listen(port,()=>{       
     console.log(`Server running on the port ${port}`)
 })
+
+
+
+
