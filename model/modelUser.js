@@ -14,8 +14,9 @@ var userSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    status:{
-        type:Boolean,
+    role:{
+        type:Number,
+        default:0,
         required:true
     },
     address:{
@@ -25,7 +26,13 @@ var userSchema = new mongoose.Schema({
     numberPhone:{
         type:String,
         required:true
-    }
+    },
+    
+   status:{
+     type: Boolean,
+      default:false,
+      require:true
+   }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('user', userSchema);

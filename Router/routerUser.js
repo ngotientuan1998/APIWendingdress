@@ -6,20 +6,18 @@ const mongoose = require('mongoose');
 
 const uri = process.env.LINK;
 
-router.get('/list_user', async (req, res) => {
+router.get('/list', async (req, res) => {
     try {
-        await mongoose.connect(uri);
-
-        let users = userModel.find();
+        await mongoose.connect(process.env.LINK);
+        let users = await userModel.find();
         console.log(users);
-
         res.send(users);
     } catch (error) {
         console.log(error);
     }
 });
 
-router.post('/add_user', async(req,res)=>{
+router.post('/add', async(req,res)=>{
     try {
         await mongoose.connect(uri);
         let user=req.body;
@@ -29,7 +27,7 @@ router.post('/add_user', async(req,res)=>{
     }
 })
 
-router.put('/update_user/:id', async(req,res)=>{
+router.put('/update/:id', async(req,res)=>{
     try {
         await mongoose.connect(uri);
         let idUser=req.params.id;
@@ -46,3 +44,4 @@ router.put('/update_user/:id', async(req,res)=>{
         console.log(error);
     }
 })
+module.exports = router

@@ -7,8 +7,8 @@ const mongoose = require('mongoose');
 const env = require('dotenv').config();
 const uri = process.env.LINK;
 
-router.get('/list_job', async (req, res) => {
-    await mongoose.connect(uri);
+router.get('/list', async (req, res) => {
+    await mongoose.connect(process.env.LINK);
 
     let user = await jobModel.find();
 
@@ -17,7 +17,7 @@ router.get('/list_job', async (req, res) => {
     res.send(jobs);
 })
 
-router.post('/add_job', async (req, res) => {
+router.post('/add', async (req, res) => {
     try {
         await mongoose.connect(uri);
         let job = req.body;

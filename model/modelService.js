@@ -7,7 +7,8 @@ var serviceSchema = new mongoose.Schema({
     },
     statusService:{
         type:Boolean,
-        required:true,
+        default:false,
+        required:true
     },
     descriptionService:{
         type:String,
@@ -16,7 +17,11 @@ var serviceSchema = new mongoose.Schema({
     priceService:{
         type: Number,
         required:true,
+    },
+    img:{
+        type:String,
+        require:true
     }
 });
 
-module.exports = mongoose.model('Service', serviceSchema);
+module.exports = mongoose.model('service', serviceSchema);

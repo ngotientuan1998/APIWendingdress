@@ -8,10 +8,11 @@ const routerLogin = require('./Router/routerLogin')
 const routerUser= require('./Router/routerUser')
 const port = process.env.PORT || 3000
 const app = express()
+app.use(express.json())
 app.use('/Service',routerService)
 app.use('/Job',routerJob)
 app.use('/Login',routerLogin)
-app.use('/User',routerThongke)
+app.use('/User',routerUser)
 
 app.listen(port,()=>{       
     console.log(`Server running on the port ${port}`)
