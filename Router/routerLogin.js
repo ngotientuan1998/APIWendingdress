@@ -13,16 +13,15 @@ router.post('/list_user', async (req, res) => {
 
     let user = await userModel.findOne({email:req.body.email});
   if(user){
-    if(user.password==req.body.password){
-        console.log("thanh cong");
-        user.password=null;
-        return res.send(user)
-
-    }
-    else{
-        console.log("mật khẩu không chính xác")
-        res.send({msg:"sai mật khẩu"})
-    }
+    if (user && user.password === req.body.password) {
+      console.log("Đăng nhập thành công");
+      user.password = null;
+      res.status(200).json({ message: "Đăng nhập thành công", user: user });
+  } else {
+      console.log("Mật khẩu không chính xác");
+      res.status(401).json({ message: "Sai tên đăng nhập hoặc mật khẩu" });
+  }
+  
   } else{
     console.log("lỗi")
     res.send({msg:"không tồn tại user"})
