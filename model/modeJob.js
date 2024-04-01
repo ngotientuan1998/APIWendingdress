@@ -15,9 +15,14 @@ var jobSchema = new mongoose.Schema({
     },
     statusJob:{
         type:Boolean,
+        default:false,
         required:true,
     },
     descriptionJob:{
+        type:String,
+        require:true
+    },
+    name:{
         type:String,
         require:true
     }

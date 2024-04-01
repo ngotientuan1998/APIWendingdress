@@ -21,7 +21,15 @@ router.post('/add', async(req,res)=>{
     try {
         await mongoose.connect(uri);
         let user=req.body;
-        await userModel.create(user);
+        const response= await userModel.create(user);
+
+        if (response) {
+            res.status(200).json(response);
+        }else{
+            res.status(401).json({
+                mess:'Không thành công'
+            })
+        }
     } catch (error) {
         console.log(error);
     }

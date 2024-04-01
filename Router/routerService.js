@@ -21,12 +21,12 @@ router.post('/add', async (req, res) => {
         if (con.connection.readyState == 1) console.log("DB connect succesFully")
         else console.log("DB connecting")
 
-        const { nameService, statusService, descriptionService, priceService ,img} = req.body
-        if (!nameService||!statusService||!descriptionService||!priceService||!img)
-            return res.status(400).json({
-                sucess:false,
-                mes: "fail"
-            })
+        // const { nameService, statusService, descriptionService, priceService ,img} = req.body
+        // if (!nameService||!statusService||!descriptionService||!priceService||!img)
+        //     return res.status(400).json({
+        //         sucess:false,
+        //         mes: "fail"
+        //     })
           
         const response = await Service.create(req.body)
         console.log("connect")
@@ -39,7 +39,7 @@ router.post('/add', async (req, res) => {
 
 })
 
-router.put('/put', async(req,res)=>{
+router.put('/put/:id', async(req,res)=>{
     try {
         await mongoose.connect(uri);
         let idService=req.params.id;
