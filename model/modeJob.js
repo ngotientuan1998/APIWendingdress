@@ -24,8 +24,8 @@ var jobSchema = new mongoose.Schema({
     },
     name:{
         type:String,
-        require:true
+        
     }
 });
 
-module.exports = mongoose.model('Job', jobSchema);
+module.exports = mongoose.model('job', jobSchema);

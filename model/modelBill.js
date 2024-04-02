@@ -23,4 +23,4 @@ var billSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Bill', billSchema);
+module.exports = mongoose.model('bill', billSchema);
