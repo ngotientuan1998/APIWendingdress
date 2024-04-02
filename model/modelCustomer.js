@@ -1,4 +1,3 @@
-const { ObjectId } = require('bson');
 const mongoose = require('mongoose'); // Erase if already required
 
 // Declare the Schema of the Mongo model
@@ -20,4 +19,4 @@ var modelCustomer = new mongoose.Schema({
 });
 
 //Export the model
-module.exports = mongoose.model('Customer', modelCustomer);
+module.exports = mongoose.model('customer', modelCustomer);
