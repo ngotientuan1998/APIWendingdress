@@ -8,37 +8,35 @@ const mongoose = require('mongoose');
 
 const uri = process.env.LINK;
 
-router.post('/list_user', async (req, res) => {
+router.post('/login', async (req, res) => {
     await mongoose.connect(uri);
   console.log("db connect")
-    let user = await userModel.findOne({email:req.body.email});
-    console.log("connect 1")
-  if(user){
+  let user = await userModel.findOne({ email: req.body.email });
+  console.log("connect 1")
+  if (user) {
 
 
     console.log(user);
-    if ( user.password === req.body.password) {
+    if (user && user.password === req.body.password) {
       console.log("Đăng nhập thành công");
       user.password = null;
-      res.status(200)
-     
-      console.log(user)
+      res.status(200).json({ message: "Đăng nhập thành công", user: user });
   } else {
       console.log("Mật khẩu không chính xác");
       res.status(401).json({ message: "Sai tên đăng nhập hoặc mật khẩu" });
-  }
-  
-  } else{
+    }
+
+  } else {
     console.log(user);
 
     console.log("lỗi")
-    res.status(401).send({msg:"không tồn tại user"})
+    res.status(401).send({ msg: "không tồn tại user" })
   }
-    
-    
+
+
 })
 
 
-module.exports=router;
+module.exports = router;
 
 

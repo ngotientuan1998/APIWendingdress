@@ -11,7 +11,13 @@ router.get('/list', async (req, res) => {
     try {
         await mongoose.connect(process.env.LINK);
         let result = await jobModel.find();
-        res.status(200).send(result);
+        if (result) {
+            res.status(200).send(result);
+        } else {
+            res.json({
+                mess: "Không thành công"
+            })
+        }
     } catch (error) {
         console.log(error);
     }
@@ -26,7 +32,7 @@ router.post('/add', async (req, res) => {
             res.status(200).send(result);
         } else {
             res.status(401).json({
-                mess:'không thành công'
+                mess: 'không thành công'
             })
         }
 
