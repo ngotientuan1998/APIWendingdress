@@ -5,27 +5,11 @@ var jobSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    dateStart:{
-        type:Date,
-        required:true,
-    },
-    endEnd:{
-        type:Date,
-        required:true,
-    },
-    statusJob:{
-        type:Boolean,
-        default:false,
-        required:true,
-    },
     descriptionJob:{
         type:String,
         require:true
     },
-    name:{
-        type:String,
-        require:true
-    }
+    
 });
 
 module.exports = mongoose.model('Job', jobSchema);
