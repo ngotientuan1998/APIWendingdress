@@ -1,54 +1,54 @@
-const express=require('express');
-const customerModel=require('../model/modelCustomer');
+const express = require('express');
+const customerModel = require('../model/modelCustomer');
+const router = express.Router();
+const mongoose = require('mongoose');
+const uri = process.env.LINK;
 
-const router=express.Router();
-const mongoose=require('mongoose');
-
-const env=require('dotenv').config();
-const uri=process.env.LINK;
-
-router.get('/list', async(req, res)=>{
+router.get('/list', async (req, res) => {
     try {
         await mongoose.connect(uri);
-        let data=customerModel.find();
+        let data = await customerModel.find();
         res.status(200).send(data);
-        
     } catch (error) {
         console.log(error);
+        res.status(500).json({ error: 'Đã xảy ra lỗi khi lấy dữ liệu' });
     }
 });
 
-router.post('/add',async(req,res)=>{
+router.post('/add', async (req, res) => {
     try {
         await mongoose.connect(uri);
-        let result=await customerModel.create(req.body);
+        let result = await customerModel.create(req.body);
         if (result) {
             res.status(200).json(result);
         } else {
             res.status(401).json({
-                mess:"Không thành công"
-            })
-        }
-    } catch (error) {   
-        console.log(error);
-    }
-});
-
-router.put('/put/:id',async(req,res)=>{
-    try {
-        await mongoose.connect(uri);
-        let id=req.params.id;
-        let result=await customerModel.findByIdAndUpdate(id, req.body, {new:true});
-
-        if (result) {
-            res.status(200).send(response);
-        } else {
-            res.status(401).json({
-                mess:'Không thành công'
+                mess: "Không thành công"
             })
         }
     } catch (error) {
         console.log(error);
+        res.status(500).json({ error: 'Đã xảy ra lỗi khi thêm dữ liệu' });
     }
 });
-module.exports=router;
+
+router.put('/put/:id', async (req, res) => {
+    try {
+        await mongoose.connect(uri);
+        let id = req.params.id;
+        let result = await customerModel.findByIdAndUpdate(id, req.body, { new: true });
+
+        if (result) {
+            res.status(200).json(result);
+        } else {
+            res.status(401).json({
+                mess: 'Không thành công'
+            })
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Đã xảy ra lỗi khi cập nhật dữ liệu' });
+    }
+});
+
+module.exports = router;
