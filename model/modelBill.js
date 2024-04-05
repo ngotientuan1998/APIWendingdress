@@ -20,6 +20,10 @@ var billSchema = new mongoose.Schema({
     totalAmout:{
         type:Number,
         require:Number
+    },
+    img:{
+    type:String,
+    require:true
     }
 });
 
