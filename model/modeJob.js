@@ -9,7 +9,10 @@ var jobSchema = new mongoose.Schema({
         type:String,
         require:true
     },
-    
+    name:{
+        type:String,
+        require:true
+    }
 });
 
-module.exports = mongoose.model('Job', jobSchema);
+module.exports = mongoose.model('job', jobSchema);
