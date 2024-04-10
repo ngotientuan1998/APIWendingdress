@@ -52,4 +52,33 @@ router.put('/update/:id', async(req,res)=>{
         console.log(error);
     }
 })
+
+router.put('/change-password/:id', async (req, res) => {
+    try {
+        await mongoose.connect(uri);
+
+        const userId = req.params.id;
+        const { oldPassword, newPassword } = req.body;
+
+        const user = await userModel.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ message: "Người dùng không tồn tại" });
+        }
+
+        if (user.password !== oldPassword) {
+            return res.status(400).json({ message: "Mật khẩu cũ không chính xác" });
+        }
+
+        user.password = newPassword;
+        await user.save();
+
+        res.status(200).json({ message: "Đổi mật khẩu thành công" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Đã xảy ra lỗi" });
+    }
+});
+
+
 module.exports = router

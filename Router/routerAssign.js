@@ -39,4 +39,30 @@ router.post('/add',async(req,res)=>{
     }
 })
 
+router.put("/put/:id",async(req,res)=>{
+    try {
+        await mongoose.connect(uri);
+        let idJob=req.params.id;
+        let updateData=req.body;
+        let result=await modelAssign.findByIdAndUpdate(idJob, updateData, {new:true});
+        if (result) {
+            res.status(200).send(result);
+            res.json({
+                "status":200,
+                "mess":"Thành công",
+                "data":result
+            })
+        }else{
+            res.status(404).send("Không tìm thấy");
+            res.json({
+                "status":200,
+                "mess":"Thành công",
+                "data":null
+            })
+        }
+    } catch (error) {
+        console.log(error);
+    }
+})
+
 module.exports= router;

@@ -20,7 +20,7 @@ router.post('/list_user', async (req, res) => {
       console.log("Đăng nhập thành công");
       user.password = null;
       res.status(200);
-      res.send({user});
+      res.send({ user });
       console.log(user);
     } else {
       console.log("Mật khẩu không chính xác");
@@ -35,6 +35,15 @@ router.post('/list_user', async (req, res) => {
   }
 
 
+})
+
+router.put('/changepass', async (req, res) => {
+  try {
+    await mongoose.connect(uri);
+    let user=await userModel.find()
+  } catch (error) {
+    console.log(error);
+  }
 })
 
 
