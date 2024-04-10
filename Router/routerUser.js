@@ -72,7 +72,6 @@ router.put('/change-password/:id', async (req, res) => {
 
         user.password = newPassword;
         await user.save();
-
         res.status(200).json({ message: "Đổi mật khẩu thành công" });
     } catch (error) {
         console.log(error);

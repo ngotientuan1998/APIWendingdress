@@ -23,9 +23,8 @@ router.post('/login', async (req, res) => {
       res.status(200);
       res.send({ user });
       console.log(user);
-    } else {
-      res.status(200).json({ message: "Đăng nhập thành công", user: user });
-  
+    }else {
+      res.status(401);
     }
 
   } else {
@@ -37,16 +36,6 @@ router.post('/login', async (req, res) => {
 
 
 })
-
-router.put('/changepass', async (req, res) => {
-  try {
-    await mongoose.connect(uri);
-    let user=await userModel.find()
-  } catch (error) {
-    console.log(error);
-  }
-})
-
 
 module.exports = router;
 
