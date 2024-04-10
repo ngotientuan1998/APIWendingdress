@@ -8,6 +8,7 @@ const routerLogin = require('./Router/routerLogin')
 const routerUser= require('./Router/routerUser')
 const routerCustomer=require('./Router/routerCustomer')
 const routerAssign=require('./Router/routerAssign')
+const routerBill = require('./Router/routerBill')
 
 const port = process.env.PORT || 3000
 const app = express()
@@ -18,7 +19,7 @@ app.use('/Login',routerLogin)
 app.use('/User',routerUser)
 app.use('/Customer', routerCustomer)
 app.use('/Assign', routerAssign)
-
+app.use('/Bill',routerBill)
 app.listen(port,()=>{       
     console.log(`Server running on the port ${port}`)
 })
