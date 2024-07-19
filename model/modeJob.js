@@ -8,10 +8,6 @@ var jobSchema = new mongoose.Schema({
     descriptionJob:{
         type:String,
         require:true
-    },
-    name:{
-        type:String,
-        require:true
     }
 });
 

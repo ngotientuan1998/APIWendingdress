@@ -8,7 +8,14 @@ router.get('/list', async (req, res) => {
     try {
         await mongoose.connect(uri);
         let data = await customerModel.find();
-        res.status(200).send(data);
+        if (data) {
+            console.log(data);
+            res.status(200).send(data);
+        }else{
+            res.json({
+                mess: "Không thành công"
+            })
+        }
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'Đã xảy ra lỗi khi lấy dữ liệu' });
