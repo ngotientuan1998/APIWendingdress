@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser=require('body-parser')
 
 require('dotenv').config()
 const routerService = require('./Router/routerService')
@@ -12,6 +13,9 @@ const routerBill = require('./Router/routerBill')
 
 const port = process.env.PORT || 3000
 const app = express()
+
+app.use(bodyParser.json());
+
 app.use(express.json())
 app.use('/Service',routerService)
 app.use('/Job',routerJob)
